@@ -3,7 +3,6 @@
 #import "@preview/glossarium:0.5.6": make-glossary, register-glossary, print-glossary, gls, glspl
 #import "locale.typ": TABLE_OF_CONTENTS, APPENDIX, REFERENCES
 #import "titlepage.typ": *
-#import "check-attributes.typ": *
 
 // Workaround for the lack of an `std` scope.
 #let std-bibliography = bibliography
@@ -42,34 +41,6 @@
   ignored-link-label-keys-for-highlighting: (),
   body,
 ) = {
-  // check required attributes
-  check-attributes(
-    title,
-    authors,
-    language,
-    at-university,
-    confidentiality-marker,
-    type-of-thesis,
-    show-confidentiality-statement,
-    show-declaration-of-authorship,
-    show-table-of-contents,
-    show-abstract,
-    abstract,
-    appendix,
-    university,
-    university-location,
-    supervisor,
-    date,
-    city,
-    bibliography,
-    glossary,
-    bib-style,
-    logo-left,
-    logo-right,
-    university-short,
-    math-numbering,
-    ignored-link-label-keys-for-highlighting,
-  )
 
   // ---------- Fonts & Related Measures ---------------------------------------
 
