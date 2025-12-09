@@ -98,7 +98,8 @@
   place(
     left,
     dy: 2 * page-grid,
-    "Relatore:\nProf. Carlo Dossi",
+    text("Relatore:", weight: "bold") +
+    text("\nProf. Carlo Dossi"),
   )
 
   place(
@@ -111,18 +112,21 @@
   place(
     left,
     dy: 5 * page-grid,
-    "Tutor Aziendale:\nEdoardo Scaglia",
+    text("Tutor Aziendale:", weight: "bold") +
+    text("\nEdoardo Scaglia"),
   )
 
   place(
     right,
     dy: 5 * page-grid,
-    "Azienda ospitante:\nAMEL SRL, Milano",
+    text("Azienda ospitante:", weight: "bold") +
+    text("\nAMEL SRL, Milano"),
   )
 
   place(
     center,
     dy: 8 * page-grid,
-    "Anno Accademico:\n2025/2026",
+    text("Anno Accademico:", weight: "bold") +
+    text("\n2025/2026"),
   )
 }
