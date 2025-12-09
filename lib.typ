@@ -3,16 +3,16 @@
 #import "@preview/glossarium:0.5.6": make-glossary, register-glossary, print-glossary, gls, glspl
 #import "locale.typ": TABLE_OF_CONTENTS, APPENDIX, REFERENCES
 #import "titlepage.typ": *
-#import "confidentiality-statement.typ": *
-#import "declaration-of-authorship.typ": *
 #import "check-attributes.typ": *
 
 // Workaround for the lack of an `std` scope.
 #let std-bibliography = bibliography
 
-#let clean-dhbw(
+#let tesi-uninsubria(
   title: none,
   authors: (:),
+  author: none,
+  matricola: none,
   language: none,
   at-university: none,
   confidentiality-marker: (display: false),
@@ -37,7 +37,7 @@
   glossary: none,
   bib-style: "ieee",
   math-numbering: "(1)",
-  logo-left: image("dhbw.svg"),
+  logo-left: image("uninsubria-logo.png"),
   logo-right: none,
   ignored-link-label-keys-for-highlighting: (),
   body,
@@ -85,7 +85,7 @@
   
   // ---------- Basic Document Settings ---------------------------------------
 
-  set document(title: title, author: authors.map(author => author.name))
+  set document(title: title, author: author)
   let many-authors = authors.len() > 3
   let in-frontmatter = state("in-frontmatter", true)    // to control page number format in frontmatter
   let in-body = state("in-body", true)                  // to control heading formatting in/outside of body
@@ -132,6 +132,8 @@
       confidentiality-marker,
       university-short,
       page-grid,
+      author,
+      matricola
     )
   }
   counter(page).update(1)  
@@ -312,37 +314,5 @@
   // ========== LEGAL BACKMATTER ========================================
 
   set heading(numbering: it => h(-18pt) + "", outlined: false)
-
-  // ---------- Confidentiality Statement ---------------------------------------
-
-  if (not at-university and show-confidentiality-statement) {
-    confidentiality-statement(
-      authors,
-      title,
-      confidentiality-statement-content,
-      university,
-      university-location,
-      date,
-      language,
-      many-authors,
-      date-format,
-    )
-  }
-
-  // ---------- Declaration Of Authorship ---------------------------------------
-
-  if (show-declaration-of-authorship) {
-    declaration-of-authorship(
-      authors,
-      title,
-      declaration-of-authorship-content,
-      date,
-      language,
-      many-authors,
-      at-university,
-      city,
-      date-format,
-    )
-  }
 
 }

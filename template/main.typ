@@ -16,7 +16,7 @@
   bibliography: bibliography("sources.bib"),
   date: datetime.today(),
   glossary: glossary-entries, // displays the glossary terms defined in "glossary.typ"
-  language: "de", // en, de
+  language: "it", // en, de
   supervisor: (company: "John Appleseed", university: "Prof. Dr. Daniel Düsentrieb"),
   university: "Duale Hochschule Baden-Württemberg",
   university-location: "Karlsruhe",

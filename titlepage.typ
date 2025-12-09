@@ -19,13 +19,14 @@
   confidentiality-marker,
   university-short,
   page-grid,
+  author,
+  matricola
 ) = {
-
   // ---------- Page Setup ---------------------------------------
 
-  set page(     
+  set page(
     // identical to document
-    margin: (top: 4cm, bottom: 3cm, left: 4cm, right: 3cm),   
+    margin: (top: 4cm, bottom: 3cm, left: 4cm, right: 3cm),
   )
   // The whole page in `title-font`, all elements centered
   set text(font: title-font, size: page-grid)
@@ -33,223 +34,95 @@
 
   // ---------- Logo(s) ---------------------------------------
 
-  if logo-left != none and logo-right == none {           // one logo: centered
-    place(                                
+  if logo-left != none and logo-right == none {
+    // one logo: centered
+    place(
       top + center,
       dy: -3 * page-grid,
-      box(logo-left, height: 3 * page-grid) 
+      box(logo-left, height: 110pt),
     )
-  } else if logo-left != none and logo-right != none {    // two logos: left & right
+  } else if logo-left != none and logo-right != none {
+    // two logos: left & right
     place(
       top + left,
       dy: -4 * page-grid,
-      box(logo-left, height: 3 * page-grid) 
+      box(logo-left, height: 3 * page-grid),
     )
     place(
       top + right,
       dy: -4 * page-grid,
-      box(logo-right, height: 3 * page-grid) 
+      box(logo-right, height: 3 * page-grid),
     )
   }
+
 
   // ---------- Title ---------------------------------------
 
-  v(7 * page-grid)     
-  text(weight: "bold", fill: luma(80), size: 1.5 * page-grid, title)
-  v(page-grid)
-  
-  // ---------- Confidentiality Marker (optional) ---------------------------------------
-
-  if (confidentiality-marker.display) {
-    let size = 7em
-    let display = false
-    let title-spacing = 2em
-    let x-offset = 0pt
-
-    let y-offset = if (many-authors) {
-      7pt
-    } else {
-      0pt
-    }
-
-    if (type-of-degree == none and type-of-thesis == none) {
-      title-spacing = 0em
-    }
-
-    if ("display" in confidentiality-marker) {
-      display = confidentiality-marker.display
-    }
-    if ("offset-x" in confidentiality-marker) {
-      x-offset = confidentiality-marker.offset-x
-    }
-    if ("offset-y" in confidentiality-marker) {
-      y-offset = confidentiality-marker.offset-y
-    }
-    if ("size" in confidentiality-marker) {
-      size = confidentiality-marker.size
-    }
-    if ("title-spacing" in confidentiality-marker) {
-      confidentiality-marker.title-spacing
-    }
-
-    v(title-spacing)
-
-    let color = if (show-confidentiality-statement) {
-      red
-    } else {
-      green.darken(5%)
-    }
-
-    place(
-      right,
-      dx: 35pt + x-offset,
-      dy: -70pt + y-offset,
-      circle(radius: size / 2, fill: color),
-    )
-  }
-
-  // ---------- Sub-Title-Infos ---------------------------------------
-  // 
-  // type of thesis (optional)
-  if (type-of-thesis != none and type-of-thesis.len() > 0) {
-    align(center, text(size: page-grid, type-of-thesis))
-    v(0.25 * page-grid)
-  }
-
-  // course of studies
-  text(TITLEPAGE_SECTION_B.at(language) + authors.map(author => author.course-of-studies).dedup().join(" | "),)
-  v(0.25 * page-grid)
-
-  // university
-  text(university + [ ] + university-location)
+  v(14 * page-grid)
 
 
-  // ---------- Author(s) ---------------------------------------
-
+  set text(size: 20pt, weight: "semibold")
   place(
-    bottom + center,
-    dy: -10 * page-grid,
-    grid(
-      columns: 100%,
-      gutter: if (many-authors) {
-        14pt
-      } else {
-        1.25 * page-grid
-      },
-      ..authors.map(author => align(
-        center,
-        {
-          text(author.name)
-        },
-      ))
-    )
+    center,
+    dy: -7 * page-grid,
+    "UNIVERSITÀ DEGLI STUDI DELL'INSUBRIA",
   )
 
-  // ---------- Info-Block ---------------------------------------
-
-  set text(size: 11pt)
+  set text(size: 16pt, weight: "regular")
   place(
-    bottom + center,
-    grid(
-      columns: (auto, auto),
-      row-gutter: 1em,
-      column-gutter: 1em,
-      align: (right, left),
+    center,
+    dy: -4 * page-grid,
+    "DIPARTIMENTO DI SCIENZE TEORICHE E APPLICATE",
+  )
 
-      // submission date
-      text(weight: "bold", fill: luma(80), TITLEPAGE_DATE.at(language)),
-      text(
-        if (type(date) == datetime) {
-          date.display(date-format)
-        } else {
-          date.at(0).display(date-format) + [ -- ] + date.at(1).display(date-format)
-        },
-      ),
+  set text(size: 16pt)
+  place(
+    center,
+    dy: -2.5 * page-grid,
+    "CORSO DI STUDIO TRIENNALE IN INFORMATICA - F004",
+  )
 
-      // students
-      align(text(weight: "bold", fill: luma(80), TITLEPAGE_STUDENT_ID.at(language)), top),
-      stack(
-        dir: ttb,
-        for author in authors {
-          text([#author.student-id, #author.course])
-          linebreak()
-        }
-      ),
+  v(7 * page-grid)
 
-      // company
-      ..if (not at-university) { 
-        (align(text(weight: "bold", fill: luma(80), TITLEPAGE_COMPANY.at(language)), top),
-         stack(
-          dir: ttb,
-          for author in authors {
-            let company-address = ""
+  set text(size: 24pt, weight: "bold")
+  place(
+    center,
+    dy: -1 * page-grid,
+    "Sviluppo di un sistema embedded per il controllo della temperatura in camera di collaudo",
+  )
 
-            // company name
-            if (
-              "name" in author.company and
-              author.company.name != none and
-              author.company.name != ""
-              ) {
-              company-address+= author.company.name
-            } else {
-              panic("Author '" + author.name + "' is missing a company name. Add the 'name' attribute to the company object.")
-            }
 
-            // company address (optional)
-            if (
-              "post-code" in author.company and
-              author.company.post-code != none and
-              author.company.post-code != ""
-              ) {
-              company-address+= text([, #author.company.post-code])
-            }
+  v(10 * page-grid)
 
-            // company city
-            if (
-              "city" in author.company and
-              author.company.city != none and
-              author.company.city != ""
-              ) {
-              company-address+= text([, #author.company.city])
-            } else {
-              panic("Author '" + author.name + "' is missing the city of the company. Add the 'city' attribute to the company object.")
-            }
+  set text(size: 12pt, weight: "light")
+  place(
+    left,
+    dy: 2 * page-grid,
+    "Relatore:\nProf. Carlo Dossi",
+  )
 
-            // company country (optional)
-            if (
-              "country" in author.company and
-              author.company.country != none and
-              author.company.country != ""
-            ) {
-              company-address+= text([, #author.company.country])
-            }
+  place(
+    right,
+    dy: 2 * page-grid,
+    text("Tesi di Laurea di:", weight: "bold") +
+    text("\n" + author + " - " + matricola),
+  )
 
-            company-address
-            linebreak()
-          }
-        )
-       )
-      },
+  place(
+    left,
+    dy: 5 * page-grid,
+    "Tutor Aziendale:\nEdoardo Scaglia",
+  )
 
-      // company supervisor
-      ..if ("company" in supervisor) {
-        (
-          text(weight: "bold", fill: luma(80), TITLEPAGE_COMPANY_SUPERVISOR.at(language)),
-          if (type(supervisor.company) == str) {text(supervisor.company)}
-        )
-      },
+  place(
+    right,
+    dy: 5 * page-grid,
+    "Azienda ospitante:\nAMEL SRL, Milano",
+  )
 
-      // university supervisor
-      ..if ("university" in supervisor) {
-        (
-          text(
-            weight: "bold", fill: luma(80), 
-            TITLEPAGE_SUPERVISOR.at(language) + university-short + [:]
-          ),
-          if (type(supervisor.university) == str) {text(supervisor.university)}
-        )
-      },
-
-    )
+  place(
+    center,
+    dy: 8 * page-grid,
+    "Anno Accademico:\n2025/2026",
   )
 }

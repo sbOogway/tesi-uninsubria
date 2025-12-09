@@ -177,20 +177,20 @@
 
   // Check allowed languages
 
-  if (language != "en" and language != "de") {
-    panic("Language is invalid. Specify 'en' for English or 'de' for German in the 'language' attribute of the template.")
-  }
+  // if (language != "en" and language != "de" and language != "it") {
+  //   panic("Language is invalid. Specify 'en' for English or 'de' for German in the 'language' attribute of the template.")
+  // }
 
 
   // Check correctness of `date`
 
-  if (
-    type(date) != datetime and (
-      type(date) != array or date.len() != 2 or type(date.at(0)) != datetime or type(date.at(1)) != datetime
-    )
-  ) {
-    panic("Date is invalid. Specify a datetime in the 'date' attribute of the template to display a specific date or use a array containing two datetime elements to display a date range.")
-  }
+  // if (
+  //   type(date) != datetime and (
+  //     type(date) != array or date.len() != 2 or type(date.at(0)) != datetime or type(date.at(1)) != datetime
+  //   )
+  // ) {
+  //   panic("Date is invalid. Specify a datetime in the 'date' attribute of the template to display a specific date or use a array containing two datetime elements to display a date range.")
+  // }
 
 
   // Checkt type and content of image-attributes
