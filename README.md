@@ -1,8 +1,10 @@
-# Clean DHBW
+# Tesi uninsubria
 
-A (modernized) [Typst](https://typst.app/) template for DHBW documents like Bachelor theses, "Studienarbeiten", project documentation etc. It is the official Typst template for Computer Science at DHBW Karlsruhe.
+DISCLAIMER: the template was forked from https://github.com/roland-KA/clean-dhbw-typst-template. there may be some inaccuracies in the docs and source.
 
-You can see an example of how the template looks in this [PDF file](https://github.com/roland-KA/clean-dhbw-typst-template/blob/main/template/main.pdf).
+A (modernized) [Typst](https://typst.app/) template for documents like Bachelor theses, project documentation etc. 
+
+You can see an example of how the template looks in this [PDF file](https://github.com/sbOogway/tesi-uninsubria/blob/main/template/main.pdf).
 
 ## Introduction and Motivation
 
@@ -14,26 +16,26 @@ Of course such a concept is always a bit biased in some way. Therefore I explain
 
 There exists already a Typst template for these sorts of documents: It's the ["supercharged-dhbw"-template](https://github.com/DannySeidel/typst-dhbw-template) by Danny Seidel. It is a great piece of work with a lot of functionality covering a broad variety of use cases. But with respect to structure and layout, it implements exactly the above criticized state (which is without doubt what many people want or maybe have to use). I discussed with Danny on how to realize further development. We agreed to keep `supercharged-dhbw` more or less as-is in order to reflect current state and needs and in consequence to build this new template as a fork of his work. This gave me also  more freedom to go new ways.
 
-For those interested, further and more detailed explanations about the design of the "*Clean DHBW Typst Template*" can be found here:
-- [Assumptions](https://github.com/roland-KA/clean-dhbw-typst-template/blob/main/docs/assumptions.md) made for the development
-- [Usability issues](https://github.com/roland-KA/clean-dhbw-typst-template/blob/main/docs/usability-issues.md) mentioned above in detail
-- [Explanation of the new document structure and layout](https://github.com/roland-KA/clean-dhbw-typst-template/blob/main/docs/design-explained.md)
+For those interested, further and more detailed explanations about the design of the "* Template*" can be found here:
+- [Assumptions](https://github.com/sbOogway/tesi-uninsubria/blob/main/docs/assumptions.md) made for the development
+- [Usability issues](https://github.com/sbOogway/tesi-uninsubria/blob/main/docs/usability-issues.md) mentioned above in detail
+- [Explanation of the new document structure and layout](https://github.com/sbOogway/tesi-uninsubria/blob/main/docs/design-explained.md)
 
 ## Usage
 
-You can use this template in the Typst web app by clicking "Start from template" on the dashboard and searching for `clean-dhbw`.
+You can use this template in the Typst web app by clicking "Start from template" on the dashboard and searching for `tesi-uninsubria`.
 
 Alternatively (if you use Typst on your local computer), you can use the CLI to kick this project off using the command
 
 ```shell
-typst init @preview/clean-dhbw MyFancyThesis
+typst init @preview/tesi-uninsubria MyFancyThesis
 ```
 
 Typst will create a new directory (`MyFancyThesis` in this example) with all the files needed to get you started.
 
 ## Support
 
-If you have questions, find bugs or have proposals for new features regarding the template or if you want to contribute, please create an issue in the [GitHub-repo](https://github.com/roland-KA/clean-dhbw-typst-template?tab=readme-ov-file).
+If you have questions, find bugs or have proposals for new features regarding the template or if you want to contribute, please create an issue in the [GitHub-repo](https://github.com/sbOogway/tesi-uninsubria?tab=readme-ov-file).
 
 For more general questions with respect to Typst, please consult the [Typst documentation](https://typst.app/docs/), the [Typst book](https://sitandr.github.io/typst-examples-book/book/about.html) or use the [Typst forum](https://forum.typst.app/), where you find a helpful and responsive community.
 
@@ -63,7 +65,7 @@ This template uses the following packages:
 
 ## Configuration
 
-This template exports the `clean-dhbw` function with the following named arguments:
+This template exports the `tesi-uninsubria` function with the following named arguments:
 
 `title (str*)`: Title of the document
 
@@ -145,68 +147,8 @@ CAVEAT: The template hasn't been adapted nor tested for more than two authors.
 
 For each argument the expected type of the value is given in parentheses. All arguments marked with `*` are required.
 
-Have a look at the example file [`main.typ`](https://github.com/roland-KA/clean-dhbw-typst-template/blob/main/template/main.typ) whithin the [`template`](https://github.com/roland-KA/clean-dhbw-typst-template/tree/main/template) directory on how to use the `clean-dhbw`-function with a typical subset of these parameters.
+Have a look at the example file [`main.typ`](https://github.com/sbOogway/tesi-uninsubria/blob/main/template/main.typ) whithin the [`template`](https://github.com/sbOogway/tesi-uninsubria/tree/main/template) directory on how to use the `tesi-uninsubria`-function with a typical subset of these parameters.
 
-### A typical configuration for a Bachelor Thesis
-
-A typical Bachelor Thesis which has _one author_ and takes place in cooperation between _DHBW_ and the _partner company,_ could have the following parametrization:
-
-```typ
-  title: "Exploration of Typst for the Composition of a University Thesis",
-  authors: (
-    (name: "Max Mustermann", student-id: "7654321", 
-     course: "TIS21", course-of-studies: "Informatik", 
-     company: ((name: "MouseTec GmbH", post-code: "70435", city: "Karlsruhe"))
-    ),
-  ),
-  at-university: false, 
-  type-of-thesis: "Bachelorarbeit",
-  show-confidentiality-statement: true, // optional, if company desires so
-  show-declaration-of-authorship: true,
-  bibliography: bibliography("sources.bib"),
-  date: datetime.today(),
-  glossary: glossary-entries,          // glossary terms from external file (see below)
-  language: "de",                      // en, de
-  supervisor: (
-    company: "John Appleseed", 
-    university: "Prof. Dr. Daniel Düsentrieb"
-  ),
-  logo-right: image("path/to/company-logo-image.png"),
-  university: "Duale Hochschule Baden-Württemberg",
-  university-location: "Karlsruhe",
-  university-short: "DHBW",
-```
-
-### A typical configuration for a "Studienarbeit"
-
-A typical Studienarbeit which has _two authors_ and takes place at _DHBW only,_ could have the following parametrization:
-
-```typ
-  title: "Exploration of Typst for the Composition of a University Thesis",
-  authors: (
-    (name: "Max Mustermann", student-id: "7654321", 
-     course: "TIS21", course-of-studies: "Informatik", 
-    ),
-    (name: "Luise Müller", student-id: "7653451", 
-     course: "TIS21", course-of-studies: "Informatik", 
-    ),
-  ),
-  city: "Karlsruhe",
-  at-university: true, 
-  type-of-thesis: "Studienarbeit",
-  show-confidentiality-statement: true, // optional, if company desires so
-  show-declaration-of-authorship: true,
-  bibliography: bibliography("sources.bib"),
-  date: datetime.today(),
-  glossary: glossary-entries,          // glossary terms from external file (see below)
-  language: "de",                      // en, de
-  supervisor: (
-    university: "Prof. Dr. Daniel Düsentrieb"
-  ),
-  university: "Duale Hochschule Baden-Württemberg",
-  university-location: "Karlsruhe",
-  university-short: "DHBW",
-``` 
 
 ## Glossary
 
