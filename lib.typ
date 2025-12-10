@@ -1,6 +1,6 @@
 #import "@preview/codelst:2.0.2": *
-#import "@preview/hydra:0.6.1": hydra
-#import "@preview/glossarium:0.5.6": gls, glspl, make-glossary, print-glossary, register-glossary
+#import "@preview/hydra:0.6.2": hydra
+#import "@preview/glossarium:0.5.9": gls, glspl, make-glossary, print-glossary, register-glossary
 #import "locale.typ": APPENDIX, REFERENCES, TABLE_OF_CONTENTS
 #import "titlepage.typ": *
 
