@@ -1,30 +1,23 @@
-#import "@preview/clean-dhbw:0.3.1": *
+#import "@local/tesi-uninsubria:0.1.0": *
 #import "glossary.typ": glossary-entries
 
-#show: clean-dhbw.with(
-  title: "Evaluation von Typst zur Erstellung einer Abschlussarbeit",
-  authors: (
-    (name: "Max Mustermann", student-id: "7654321", course: "TINF22B2", course-of-studies: "Informatik", company: (
-      (name: "ABC GmbH", post-code: "76131", city: "Karlsruhe")
-    )),
-    // (name: "Juan Pérez", student-id: "1234567", course: "TIM21", course-of-studies: "Mobile Computer Science", company: (
-    //   (name: "ABC S.L.", post-code: "08005", city: "Barcelona", country: "Spain")
-    // )),
-  ),
-  type-of-thesis: "Bachelorarbeit",
-  at-university: false, // if true the company name on the title page and the confidentiality statement are hidden
+
+#show: tesi-uninsubria.with(
+  titolo: "Sviluppo di un sistema embedded per un razzo lunare",
+  autore: "Mattia Rossi",
+  matricola: "747053",
   bibliography: bibliography("sources.bib"),
-  date: datetime.today(),
+  codice_corso: "F004",
+  relatore: "Carlo Rossi",
+  tutor: "Edoardo Neri",
+  azienda: "NASA spa",
+  anno_accademico: "2025/2026",
+  corso: "CORSO DI STUDIO TRIENNALE IN INFORMATICA",
+  dipartimento: "DIPARTIMENTO DI SCIENZE TEORICHE E APPLICATE",
+
   glossary: glossary-entries, // displays the glossary terms defined in "glossary.typ"
   language: "it", // en, de
-  supervisor: (company: "John Appleseed", university: "Prof. Dr. Daniel Düsentrieb"),
-  university: "Duale Hochschule Baden-Württemberg",
-  university-location: "Karlsruhe",
-  university-short: "DHBW",
-  // for more options check the package documentation (https://typst.app/universe/package/clean-dhbw)
 )
-
-// Edit this content to your liking
 
 = Einleitung
 
