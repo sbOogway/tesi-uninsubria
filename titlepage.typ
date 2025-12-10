@@ -1,64 +1,35 @@
 #import "locale.typ": *
 
 #let titlepage(
-  authors,
-  date,
-  title-font,
   language,
-  logo-left,
-  logo-right,
-  many-authors,
-  supervisor,
-  title,
-  type-of-thesis,
-  university,
-  university-location,
-  at-university,
-  date-format,
-  show-confidentiality-statement,
-  confidentiality-marker,
-  university-short,
-  page-grid,
-  author,
-  matricola
+  matricola,
+  titolo,
+  relatore,
+  tutor,
+  azienda,
+  anno_accademico,
+  dipartimento,
+  corso,
+  codice_corso,
+  autore,
+
 ) = {
   // ---------- Page Setup ---------------------------------------
 
-  set page(
-    // identical to document
-    margin: (top: 4cm, bottom: 3cm, left: 4cm, right: 3cm),
-  )
+  let page-grid = 10pt
+  
   // The whole page in `title-font`, all elements centered
-  set text(font: title-font, size: page-grid)
+  // set text( size: page-grid)
   set align(center)
 
-  // ---------- Logo(s) ---------------------------------------
-
-  if logo-left != none and logo-right == none {
-    // one logo: centered
-    place(
-      top + center,
-      dy: -3 * page-grid,
-      box(logo-left, height: 110pt),
-    )
-  } else if logo-left != none and logo-right != none {
-    // two logos: left & right
-    place(
-      top + left,
-      dy: -4 * page-grid,
-      box(logo-left, height: 3 * page-grid),
-    )
-    place(
-      top + right,
-      dy: -4 * page-grid,
-      box(logo-right, height: 3 * page-grid),
-    )
-  }
-
+  place(
+    top + center,
+    box(image("uninsubria-logo.png"), width: 100pt)
+  )
 
   // ---------- Title ---------------------------------------
 
-  v(14 * page-grid)
+  v(21 * page-grid)
 
 
   set text(size: 20pt, weight: "semibold")
@@ -72,61 +43,61 @@
   place(
     center,
     dy: -4 * page-grid,
-    "DIPARTIMENTO DI SCIENZE TEORICHE E APPLICATE",
+    dipartimento
   )
 
   set text(size: 16pt)
   place(
     center,
     dy: -2.5 * page-grid,
-    "CORSO DI STUDIO TRIENNALE IN INFORMATICA - F004",
+    corso + " - " + codice_corso,
   )
 
-  v(7 * page-grid)
+  v(15 * page-grid)
 
-  set text(size: 24pt, weight: "bold")
+  set text(size: 28pt, weight: "bold")
   place(
     center,
     dy: -1 * page-grid,
-    "Sviluppo di un sistema embedded per il controllo della temperatura in camera di collaudo",
+    text(titolo),
   )
 
 
-  v(10 * page-grid)
+  v(21 * page-grid)
 
   set text(size: 12pt, weight: "light")
   place(
     left,
-    dy: 2 * page-grid,
+    // dy: 2 * page-grid,
     text("Relatore:", weight: "bold") +
-    text("\nProf. Carlo Dossi"),
+    text("\nProf. " + relatore),
   )
 
   place(
     right,
     dy: 2 * page-grid,
     text("Tesi di Laurea di:", weight: "bold") +
-    text("\n" + author + " - " + matricola),
+    text("\n" + autore + " - " + matricola),
   )
 
   place(
     left,
     dy: 5 * page-grid,
     text("Tutor Aziendale:", weight: "bold") +
-    text("\nEdoardo Scaglia"),
+    text("\n" + tutor),
   )
 
   place(
     right,
     dy: 5 * page-grid,
     text("Azienda ospitante:", weight: "bold") +
-    text("\nAMEL SRL, Milano"),
+    text("\n" + azienda),
   )
 
   place(
     center,
     dy: 8 * page-grid,
     text("Anno Accademico:", weight: "bold") +
-    text("\n2025/2026"),
+    text("\n" + anno_accademico),
   )
 }
