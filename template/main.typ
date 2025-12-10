@@ -1,4 +1,4 @@
-#import "@preview/tesi-uninsubria:0.1.0": *
+#import "@preview/uninsubria-thesis:0.1.0": *
 #import "glossary.typ": glossary-entries
 
 

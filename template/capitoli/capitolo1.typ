@@ -1,4 +1,4 @@
-#import "@preview/tesi-uninsubria:0.1.0": gls, sourcecode
+#import "@preview/uninsubria-thesis:0.1.0": gls, sourcecode
 = Spiegazione
 
 Di seguito vengono illustrati alcuni elementi e funzioni utili per creare documenti Typst con questo template.
